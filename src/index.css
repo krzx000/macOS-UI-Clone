@@ -7,6 +7,13 @@
   font-family: Roboto, -apple-system, BlinkMacSystemFont, serif;
 }
 
+body {
+  overflow: hidden;
+}
+img {
+  user-select: none;
+}
+
 .BACKGROUND {
   background-position: center;
   background-size: cover;
@@ -58,4 +65,9 @@
     box-shadow: 0 1px 2.5px rgba(0, 122, 255, 24%), 0 0 0 0.5px rgba(0, 122, 255, 12%);
     border: none;
   }
+}
+
+.DOCK-BACKGROUND {
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 16%);
+  border: inset 1px solid rgb(26, 26, 26, 46);
 }

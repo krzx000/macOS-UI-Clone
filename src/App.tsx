@@ -7,9 +7,12 @@ import { Pushbutton } from "./components/PushButton";
 import { TextField } from "./components/TextField";
 import { ProgressBar } from "./components/ProgressBar";
 import { Checkbox } from "./components/Checkbox";
+import { Dock } from "./components/Dock";
+import { setTheme } from "./app/systemSlice";
 
 export const App = () => {
   const theme = useSelector((state: RootState) => state.system.theme);
+  const runningApps = useSelector((state: RootState) => state.system.runningApps);
 
   // Memoizacja obrazu tła dla wydajności
   const backgroundImage = useMemo(() => getBackgroundImage(theme), [theme]);
@@ -45,15 +48,12 @@ export const App = () => {
         <ProgressBar progress={50} large />
       </div>
       <div>
-        <Checkbox
-          checked={accepted}
-          label="chuj"
-          onToggle={(value) => {
-            setAccepted(value);
-            console.log(123);
-          }}
-        />
+        <Checkbox checked={accepted} label="chuj" onToggle={(value) => setAccepted(value)} />
       </div>
+
+      {runningApps.map((app) => app.content({}))}
+
+      <Dock>{runningApps.map((app) => app.name)}</Dock>
     </div>
   );
 };
