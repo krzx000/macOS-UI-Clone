@@ -18,7 +18,7 @@ export const TextField: React.FC<
   };
 
   return (
-    <span className="relative">
+    <span className="relative z-0">
       <input
         {...rest}
         className={`TEXT-FIELD bg-white px-2 py-1 box-content pr-5 text-sm disabled:bg-white/70 placeholder:text-black/25 text-black/85 outline-none ${

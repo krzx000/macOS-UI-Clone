@@ -15,5 +15,9 @@ export type Application = {
   maximized: boolean;
   zIndex?: number;
   content: React.FC;
+  menuBarOptions?: {
+    default?: string[];
+    custom?: { label: string; options: string[] }[];
+  };
   id: number;
 };

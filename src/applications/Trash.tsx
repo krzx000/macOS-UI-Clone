@@ -14,7 +14,7 @@ export const Trash: Application = {
   id: 0,
   content: () => {
     return (
-      <div className="h-full w-full flex justify-center items-center">
+      <div key={"trash"} className="h-full w-full flex justify-center items-center">
         <h1 className="text-4xl font-bold text-gray-700">Trash</h1>
       </div>
     );

@@ -71,3 +71,29 @@ img {
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 16%);
   border: inset 1px solid rgb(26, 26, 26, 46);
 }
+
+.DOCK-APPLICATION-OPENED {
+  animation: DockApplicationOpen 0.5s;
+}
+
+@keyframes DockApplicationOpen {
+  0% {
+    transform: translateY(0) scaleY(1);
+  }
+
+  50% {
+    transform: translateY(-10px) scaleY(1.05);
+  }
+
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+.DOT {
+  mix-blend-mode: darken;
+}
+
+.MENU-BAR-ITEM {
+  box-shadow: 0 0 1.5px rgba(0, 0, 0, 10%), 0 0 1px rgba(0, 0, 0, 40%), 0 7px 22px rgba(0, 0, 0, 25%);
+}
