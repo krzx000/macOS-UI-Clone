@@ -6,11 +6,43 @@ export const MenuBar: React.FC = () => {
   const menuBarItems = [
     {
       label: "File",
-      options: ["test1", "test2", "test3"],
+      options: [
+        "New Finder Window",
+        "New Folder",
+        "New Folder with Selection",
+        "New Smart Folder",
+        "Open",
+        "Open With",
+        "Print",
+        "Close Window",
+        "Get Info",
+        "Rename",
+        "Compress",
+        "Duplicate",
+        "Make Alias",
+        "Quick Look",
+        "Show Original",
+        "Add to Sidebar",
+        "Move to Trash",
+        "Eject",
+        null,
+        "Find",
+        "Tags...",
+      ],
     },
     {
       label: "Edit",
-      options: ["test1", "test2", "test3"],
+      options: [
+        "Undo",
+        "Redo",
+        "Cut",
+        "Copy",
+        "Paste",
+        "Select All",
+        "Show Clipboard",
+        "Start Dictation...",
+        "Emoji & Symbols",
+      ],
     },
     {
       label: "View",
@@ -106,8 +138,25 @@ export const MenuBar: React.FC = () => {
   }, []);
   return (
     <div ref={menuBarRef} className="w-full h-6 flex justify-between bg-white/50 backdrop-blur-[50px]">
-      <div className="flex px-1 ml-1">
-        <MenuBarItem icon={<FaApple fontSize={"16px"} color="black" />} />
+      <ul className="flex px-1 ml-1">
+        <MenuBarItem
+          icon={<FaApple fontSize={"16px"} color="black" className="z-20" />}
+          options={[
+            "About This Mac",
+            "System Preferences...",
+            "App Store...",
+            "Recent Items",
+            "Force Quit",
+            "Sleep",
+            "Restart...",
+            "Shut Down",
+            null,
+            "Lock Screen",
+            "Log Out User...",
+          ]}
+          onClick={() => handleMenuBarItemClick(-1)} // Używamy -1 jako indeks dla logo Apple
+          active={activeMenuBarItem === -1}
+        />
         {menuBarItems.map((item, index) => (
           <MenuBarItem
             key={index}
@@ -118,7 +167,7 @@ export const MenuBar: React.FC = () => {
             active={activeMenuBarItem === index}
           />
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

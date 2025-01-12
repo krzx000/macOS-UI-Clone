@@ -10,15 +10,20 @@ export const MenuBarItem: React.FC<{
   onMouseEnter?: () => void;
 }> = ({ label, icon, options, bold, active, onClick, onMouseEnter }) => {
   return (
-    <button
+    <li
       onMouseEnter={onMouseEnter}
       onClick={onClick}
-      className={`px-2.5 py-0.5 flex items-center rounded-md ${
-        active ? "bg-[#E6E6E6]" : ""
-      } cursor-pointer relative`}
+      className={`px-2.5 py-0.5 flex items-center justify-center rounded-md cursor-pointer relative`}
     >
+      <div
+        className={`absolute bg-[#E6E6E6] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${
+          active ? "scale-100 opacity-100" : "scale-[.85] opacity-0"
+        } rounded-md  w-full h-full transition-transform duration-100`}
+      />
       {icon && icon}
-      <span className={`text-black text-sm ${bold ? "font-bold" : "font-semibold"}`}>{label}</span>
+      {label && (
+        <span className={`text-black  text-sm z-10 ${bold ? "font-bold " : "font-[500]"}`}>{label}</span>
+      )}
 
       {options && active && (
         <div className="MENU-BAR-ITEM absolute top-full translate-y-1.5 left-0 z-20 w-max rounded-md bg-[#F6F6F6]/60 backdrop-blur-[80px] flex flex-col p-1.5">
@@ -32,16 +37,16 @@ export const MenuBarItem: React.FC<{
             }
 
             return (
-              <div
+              <button
                 key={index}
-                className="px-2 py-1 text-black text-sm cursor-pointer w-full text-left hover:bg-macos-blue hover:text-white rounded-md"
+                className="px-2 py-1 text-black text-sm cursor-pointer w-full text-left hover:bg-macos-blue hover:text-white rounded-md leading-5"
               >
                 {option}
-              </div>
+              </button>
             );
           })}
         </div>
       )}
-    </button>
+    </li>
   );
 };
