@@ -19,7 +19,6 @@ const systemSlice = createSlice({
       state.theme = action.payload;
     },
     openApp: (state, action: PayloadAction<Application>) => {
-      console.log("cwel");
       state.runningApps.push(action.payload);
     },
   },

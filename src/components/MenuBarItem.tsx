@@ -3,7 +3,7 @@ import React from "react";
 export const MenuBarItem: React.FC<{
   label?: string;
   icon?: React.ReactNode;
-  options?: (string | null)[];
+  options?: ({ label: string; active: boolean } | null)[];
   bold?: boolean;
   active?: boolean;
   onClick?: () => void;
@@ -26,7 +26,7 @@ export const MenuBarItem: React.FC<{
       )}
 
       {options && active && (
-        <div className="MENU-BAR-ITEM absolute top-full translate-y-1.5 left-0 z-20 w-max rounded-md bg-[#F6F6F6]/60 backdrop-blur-[80px] flex flex-col p-1.5">
+        <div className="MENU-BAR-ITEM absolute top-full translate-y-1.5 left-0 z-20 w-max rounded-md bg-[#F6F6F6]/60 backdrop-blur-[80px] flex flex-col p-1.5 cursor-auto">
           {options.map((option, index) => {
             if (option === null) {
               return (
@@ -39,9 +39,13 @@ export const MenuBarItem: React.FC<{
             return (
               <button
                 key={index}
-                className="px-2 py-1 text-black text-sm cursor-pointer w-full text-left hover:bg-macos-blue hover:text-white rounded-md leading-5"
+                className={`px-2 py-1 text-sm cursor-pointer w-full text-left  ${
+                  option.active
+                    ? "hover:bg-macos-blue hover:text-white text-black/85 cursor-pointer"
+                    : "text-black/35"
+                } rounded-md leading-5`}
               >
-                {option}
+                {option.label}
               </button>
             );
           })}

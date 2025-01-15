@@ -1,113 +1,119 @@
 import { FaApple } from "react-icons/fa";
 import { MenuBarItem } from "./MenuBarItem";
 import { useEffect, useRef, useState } from "react";
+import { IoIosWifi } from "react-icons/io";
+import { IoSearch } from "react-icons/io5";
+import { ICONS } from "../utils/assets";
 
 export const MenuBar: React.FC = () => {
   const menuBarItems = [
     {
       label: "File",
       options: [
-        "New Finder Window",
-        "New Folder",
-        "New Folder with Selection",
-        "New Smart Folder",
-        "Open",
-        "Open With",
-        "Print",
-        "Close Window",
-        "Get Info",
-        "Rename",
-        "Compress",
-        "Duplicate",
-        "Make Alias",
-        "Quick Look",
-        "Show Original",
-        "Add to Sidebar",
-        "Move to Trash",
-        "Eject",
+        { label: "New Finder Window", active: true },
+        { label: "New Folder", active: true },
+        { label: "New Folder with Selection", active: false },
+        { label: "New Smart Folder", active: true },
+        { label: "Open", active: false },
+        { label: "Open With", active: false },
+        { label: "Print", active: false },
+        { label: "Close Window", active: false },
+        { label: "Get Info", active: true },
+        { label: "Rename", active: false },
+        { label: "Compress", active: false },
+        { label: "Duplicate", active: false },
+        { label: "Make Alias", active: false },
+        { label: "Quick Look", active: false },
+        { label: "Show Original", active: false },
+        { label: "Add to Sidebar", active: false },
+        { label: "Move to Trash", active: false },
+        { label: "Eject", active: false },
         null,
-        "Find",
-        "Tags...",
+        { label: "Find", active: true },
+        { label: "Tags...", active: false },
       ],
     },
     {
       label: "Edit",
       options: [
-        "Undo",
-        "Redo",
-        "Cut",
-        "Copy",
-        "Paste",
-        "Select All",
-        "Show Clipboard",
-        "Start Dictation...",
-        "Emoji & Symbols",
+        { label: "Undo", active: false },
+        { label: "Redo", active: false },
+        { label: "Cut", active: false },
+        { label: "Copy", active: false },
+        { label: "Paste", active: false },
+        { label: "Select All", active: false },
+        { label: "Show Clipboard", active: true },
+        { label: "Start Dictation...", active: true },
+        { label: "Emoji & Symbols", active: true },
       ],
     },
     {
       label: "View",
       options: [
-        "As Icons",
-        "As List",
-        "As Columns",
-        "As Gallery",
-        "Sort By",
-        "Clean Up",
-        "Clean Up By",
-        "Hide Sidebar",
-        "Show Preview",
-        "Hide Toolbar",
-        "Show All Tabs",
-        "Show Tab Bar",
-        "Show Path Bar",
-        "Show Status Bar",
-        "Customize Toolbar",
+        { label: "As Icons", active: false },
+        { label: "As List", active: false },
+        { label: "As Columns", active: false },
+        { label: "As Gallery", active: false },
+        { label: "Sort By", active: true },
+        { label: "Clean Up", active: false },
+        { label: "Clean Up By", active: false },
+        { label: "Hide Sidebar", active: false },
+        { label: "Show Preview", active: false },
+        { label: "Hide Toolbar", active: false },
+        { label: "Show All Tabs", active: false },
+        { label: "Show Tab Bar", active: false },
+        { label: "Show Path Bar", active: false },
+        { label: "Show Status Bar", active: false },
+        { label: "Customize Toolbar", active: false },
         null,
-        "Show View Options",
-        "Show Preview Options",
-        "Enter Full Screen",
+        { label: "Show View Options", active: false },
+        { label: "Show Preview Options", active: false },
+        { label: "Enter Full Screen", active: true },
       ],
     },
     {
       label: "Go",
       options: [
-        "Back",
-        "Forward",
-        "Enclosing Folder",
-        "Recents",
-        "Documents",
-        "Desktop",
-        "Downloads",
-        "Home",
-        "Computer",
-        "AirDrop",
-        "Network",
-        "iCloud Drive",
-        "Go to Folder",
-        "Applications",
-        "Utilities",
-        "Go to Folder",
-        "Connect to Server",
+        { label: "Back", active: false },
+        { label: "Forward", active: false },
+        { label: "Enclosing Folder", active: true },
+        { label: "Recents", active: true },
+        { label: "Documents", active: true },
+        { label: "Desktop", active: true },
+        { label: "Downloads", active: true },
+        { label: "Home", active: true },
+        { label: "Computer", active: true },
+        { label: "AirDrop", active: true },
+        { label: "Network", active: true },
+        { label: "iCloud Drive", active: true },
+        { label: "Go to Folder", active: true },
+        { label: "Applications", active: true },
+        { label: "Utilities", active: true },
+        { label: "Go to Folder", active: true },
+        { label: "Connect to Server", active: true },
       ],
     },
     {
       label: "Window",
       options: [
-        "Minimize",
-        "Zoom",
-        "Move Window to Left Side of Screen",
-        "Move Window to Right Side of Screen",
-        "Cycle Through Windows",
-        "Show Previous Tab",
-        "Show Next Tab",
-        "Move Tab to New Window",
-        "Merge All Windows",
-        "Bring All to Front",
+        { label: "Minimize", active: false },
+        { label: "Zoom", active: false },
+        { label: "Move Window to Left Side of Screen", active: false },
+        { label: "Move Window to Right Side of Screen", active: false },
+        { label: "Cycle Through Windows", active: true },
+        { label: "Show Previous Tab", active: false },
+        { label: "Show Next Tab", active: false },
+        { label: "Move Tab to New Window", active: false },
+        { label: "Merge All Windows", active: false },
+        { label: "Bring All to Front", active: true },
       ],
     },
     {
       label: "Help",
-      options: ["Send Feedback", "macOS Help"],
+      options: [
+        { label: "Send Feedback", active: true },
+        { label: "macOS Help", active: true },
+      ],
     },
   ];
 
@@ -136,25 +142,40 @@ export const MenuBar: React.FC = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const date = new Date();
+
+  const weekdayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const dateString =
+    weekdayNames[date.getDay()] +
+    " " +
+    monthNames[date.getMonth()] +
+    " " +
+    date.getDate() +
+    " " +
+    date.getHours() +
+    ":" +
+    ("00" + date.getMinutes()).slice(-2) +
+    " ";
+
   return (
     <div ref={menuBarRef} className="w-full h-6 flex justify-between bg-white/50 backdrop-blur-[50px]">
       <ul className="flex px-1 ml-1">
         <MenuBarItem
           icon={<FaApple fontSize={"16px"} color="black" className="z-20" />}
           options={[
-            "About This Mac",
-            "System Preferences...",
-            "App Store...",
-            "Recent Items",
-            "Force Quit",
-            "Sleep",
-            "Restart...",
-            "Shut Down",
+            { label: "About This Mac", active: true },
+            { label: "System Preferences...", active: true },
+            { label: "App Store...", active: true },
+            { label: "Recent Items", active: true },
+            { label: "Force Quit", active: true },
             null,
-            "Lock Screen",
-            "Log Out User...",
+            { label: "Sleep", active: true },
+            { label: "Restart...", active: true },
+            { label: "Shut Down", active: true },
           ]}
-          onClick={() => handleMenuBarItemClick(-1)} // Używamy -1 jako indeks dla logo Apple
+          onClick={() => handleMenuBarItemClick(-1)}
           active={activeMenuBarItem === -1}
         />
         {menuBarItems.map((item, index) => (
@@ -168,6 +189,24 @@ export const MenuBar: React.FC = () => {
           />
         ))}
       </ul>
+
+      <div className="flex justify-center items-center">
+        <ul className="flex items-center">
+          <TrailingItem icon={ICONS.MenuBar.WiFi} />
+          <TrailingItem icon={ICONS.MenuBar.Search} />
+          <TrailingItem icon={ICONS.MenuBar.User} />
+          <TrailingItem icon={ICONS.MenuBar.ControlPanel} />
+        </ul>
+        <div className="px-2.5">{dateString}</div>
+      </div>
     </div>
+  );
+};
+
+const TrailingItem: React.FC<{ icon: string; modal?: React.FC }> = ({ icon, modal }) => {
+  return (
+    <li className="px-2.5 h-full flex items-center justify-center">
+      <img src={icon} alt="icon" />
+    </li>
   );
 };

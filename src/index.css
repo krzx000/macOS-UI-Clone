@@ -75,6 +75,12 @@ img {
 .DOCK-APPLICATION-OPENED {
   animation: DockApplicationOpen 0.5s;
 }
+.DOCK-APPLICATION > img {
+  transition: transform 0.25s;
+}
+.DOCK-APPLICATION:hover > img {
+  transform: translateY(-12.5%) scale(1.3);
+}
 
 @keyframes DockApplicationOpen {
   0% {
