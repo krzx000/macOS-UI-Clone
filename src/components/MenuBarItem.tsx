@@ -26,13 +26,13 @@ export const MenuBarItem: React.FC<{
       )}
 
       {options && active && (
-        <div className="MENU-BAR-ITEM absolute top-full translate-y-1.5 left-0 z-20 w-max rounded-md bg-[#F6F6F6]/60 backdrop-blur-[80px] flex flex-col p-1.5 cursor-auto">
+        <ul className="MENU-BAR-ITEM absolute top-full translate-y-1.5 left-0  min-w-52 z-20 w-max rounded-md bg-[#F6F6F6]/60 backdrop-blur-[80px] flex flex-col p-1.5 cursor-auto">
           {options.map((option, index) => {
             if (option === null) {
               return (
-                <div key={index} className="px-2 py-1">
+                <li key={index} className="px-2 py-1">
                   <div className="bg-black/10 w-full h-[1px]" />
-                </div>
+                </li>
               );
             }
 
@@ -49,7 +49,7 @@ export const MenuBarItem: React.FC<{
               </button>
             );
           })}
-        </div>
+        </ul>
       )}
     </li>
   );

@@ -1,10 +1,10 @@
 import { FaApple } from "react-icons/fa";
 import { MenuBarItem } from "./MenuBarItem";
 import { useEffect, useRef, useState } from "react";
-import { IoIosWifi } from "react-icons/io";
-import { IoSearch } from "react-icons/io5";
-import { ICONS } from "../utils/assets";
 
+import { ICONS } from "../utils/assets";
+import dateFormat from "dateformat";
+import { TrailingItem } from "./TrailingItem";
 export const MenuBar: React.FC = () => {
   const menuBarItems = [
     {
@@ -143,22 +143,6 @@ export const MenuBar: React.FC = () => {
     };
   }, []);
 
-  const date = new Date();
-
-  const weekdayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const dateString =
-    weekdayNames[date.getDay()] +
-    " " +
-    monthNames[date.getMonth()] +
-    " " +
-    date.getDate() +
-    " " +
-    date.getHours() +
-    ":" +
-    ("00" + date.getMinutes()).slice(-2) +
-    " ";
-
   return (
     <div ref={menuBarRef} className="w-full h-6 flex justify-between bg-white/50 backdrop-blur-[50px]">
       <ul className="flex px-1 ml-1">
@@ -190,23 +174,17 @@ export const MenuBar: React.FC = () => {
         ))}
       </ul>
 
-      <div className="flex justify-center items-center">
-        <ul className="flex items-center">
+      <div className="flex justify-center items-center h-full">
+        <ul className="flex items-center h-full">
           <TrailingItem icon={ICONS.MenuBar.WiFi} />
           <TrailingItem icon={ICONS.MenuBar.Search} />
           <TrailingItem icon={ICONS.MenuBar.User} />
           <TrailingItem icon={ICONS.MenuBar.ControlPanel} />
         </ul>
-        <div className="px-2.5">{dateString}</div>
+        <div className="px-2.5 font-semibold text-sm select-none">
+          {dateFormat(new Date(), "ddd mmm dd h:MM TT")}
+        </div>
       </div>
     </div>
-  );
-};
-
-const TrailingItem: React.FC<{ icon: string; modal?: React.FC }> = ({ icon, modal }) => {
-  return (
-    <li className="px-2.5 h-full flex items-center justify-center">
-      <img src={icon} alt="icon" />
-    </li>
   );
 };
